@@ -82,7 +82,7 @@ library(ggtext)
 theme_set(theme_minimal())
 
 titanic %>%
-  ggplot(aes(Class, n, fill = Sex)) +
+  ggplot(aes(x = Class, y = n, fill = Sex)) +
   geom_col(position = "dodge") +
   geom_text(
     aes(label = n),
@@ -115,13 +115,13 @@ library(gapminder)
 data <- gapminder %>%
   filter(continent %in% c("Europe")) %>%
   group_by(country) %>%
-  mutate(pcgpd_change = ifelse(year == 1952, 0, gdpPercap - lag(gdpPercap))) %>%
-  mutate(pcgpd_change = cumsum(pcgpd_change))
+  mutate(pcgdp_change = ifelse(year == 1952, 0, gdpPercap - lag(gdpPercap))) %>%
+  mutate(pcgdp_change = cumsum(pcgdp_change))
 
 data %>%
-  ggplot(mapping = aes(x = year, y = pcgpd_change, color = country)) +
+  ggplot(mapping = aes(x = year, y = pcgdp_change, color = country)) +
   geom_line() +
-  gghighlight(max(pcgpd_change) > 35000) +
+  gghighlight(max(pcgdp_change) > 35000) +
   scale_x_continuous(
     expand = expansion(mult = c(0.002, 0)),
     breaks = c(seq(1950, 2010, 10)),
@@ -137,5 +137,6 @@ data %>%
     x = "Year",
     y = "Change in per-capita GDP (US dollars)"
   )
+
 
 ```

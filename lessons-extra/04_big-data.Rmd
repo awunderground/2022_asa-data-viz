@@ -135,7 +135,7 @@ Jittering helps with overplotting with modestly sized data sets. It is not helpf
 ```{r fig.height = 3}
 without_jitter <- diamonds %>%
   ggplot(aes(x = carat, y = price)) +
-  geom_jitter() +
+  geom_point() +
   labs(subtitle = "Without Jitter")
 
 with_jitter <- diamonds %>%

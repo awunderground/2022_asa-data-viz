@@ -268,8 +268,8 @@ Faceting or using small multiples is a useful way to declutter a busy data visua
 data <- gapminder %>%
   filter(continent %in% c("Europe")) %>%
   group_by(country) %>%
-  mutate(pcgpd_change = ifelse(year == 1952, 0, gdpPercap - lag(gdpPercap))) %>%
-  mutate(pcgpd_change = cumsum(pcgpd_change))
+  mutate(pcgdp_change = ifelse(year == 1952, 0, gdpPercap - lag(gdpPercap))) %>%
+  mutate(pcgdp_change = cumsum(pcgdp_change))
   
 ```
 
@@ -295,4 +295,4 @@ data <- gapminder %>%
   )
 ```
 
-<font color="#55b748">Step 5:</font> Suppose we want to highlight the two best-performing counties. We could add a new variable and tinker with the colors or we can use `library(gghighlight)`. Switch `group` to `color` in you existing code and add `gghighlight(max(pcgpd_change) > 35000)`.
+<font color="#55b748">Step 5:</font> Suppose we want to highlight the two best-performing counties. We could add a new variable and tinker with the colors or we can use `library(gghighlight)`. Switch `group` to `color` in you existing code and add `gghighlight(max(pcgdp_change) > 35000)`.

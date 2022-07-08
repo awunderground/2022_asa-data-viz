@@ -13,14 +13,24 @@ editor_options:
 
 ```{r}
 library(tidyverse)
+options(scipen = 999)
+
+theme_set(theme_minimal())
 
 ```
 
 ## Exercise 1
 
+I can write notes here 
+
 ```{r}
 ggplot(data = storms) + 
   geom_point(mapping = aes(x = pressure, y = wind))
+
+```
+
+```{r}
+
 
 ```
 
@@ -48,11 +58,12 @@ ggplot(data = storms) +
 ## Exercise 3
 
 ```{r}
-msleep %>%
-  ggplot() +
-  geom_point(aes(bodywt, sleep_total)) +
+ggplot(data = msleep) +
+  geom_point(mapping = aes(x = bodywt, y = sleep_total)) +
   scale_x_log10() +
-  scale_y_continuous(limits = c(0, NA))
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(title = "Measurements of Common Animals",
+       x = "Body Weight (Pounds)")
 
 ```
 
@@ -73,7 +84,7 @@ ggplot(data = data) +
 ```{r}
 storms %>%
   ggplot() +
-  geom_point(aes(pressure, wind)) +
+  geom_point(mapping = aes(x = pressure, y = wind)) +
   facet_wrap(~ month)
 
 ```
@@ -81,8 +92,14 @@ storms %>%
 ## Exercise 6
 
 ```{r}
-ggplot(storms) +
+ggplot(data = storms) +
   geom_bar(mapping = aes(x = category))
+
+ggplot(data = count(storms, category)) +
+  geom_col(mapping = aes(x = category, y = n))
+
+count(storms, category, year)
+
 
 ```
 
@@ -116,20 +133,17 @@ storms %>%
   count(year) %>%
   ggplot() + 
   geom_line(mapping = aes(x = year, y = n)) +
-  geom_line(mapping = aes(x = year, y = n))
+  geom_point(mapping = aes(x = year, y = n))
+
 
 ```
 
 ## Exercise 10
 
 ```{r}
-storms %>%  
-  filter(category > 0) %>%
-  distinct(name, year) %>%
-  count(year) %>%
-  ggplot(mapping = aes(x = year, y = n)) + 
-  geom_line() +
-  geom_line()
+ggplot(data = storms, mapping = aes(x = pressure, y = wind)) + 
+  geom_point() +
+  geom_smooth()
 
 ```
 
@@ -142,8 +156,8 @@ storms %>%
   count(year) %>%
   ggplot(mapping = aes(x = year, y = n)) + 
   geom_line() +
-  geom_line()
+  geom_point()
 
-#ggsave(filename = "favorite-plot.png", width = 6, height = 4)
+ggsave(filename = "favorite-plot.png", width = 6.5, height = 4)
 
 ```

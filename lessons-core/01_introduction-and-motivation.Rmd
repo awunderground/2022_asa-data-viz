@@ -130,3 +130,11 @@ Click ![](`r here::here("www", "images", "knit.png")`){width=20%} when a .Rmd do
 <font color="#55b748">Step 2:</font> Open `02_workbook.Rmd` in RStudio. Make sure it is in `2022_asa-data-viz.Rproj`. That is, you should not see `Project: (None)` in the top right of RStudio.
 
 <font color="#55b748">Step 3:</font> Click knit!
+
+-----
+
+## What this Course Doesn't Teach (Directly)
+
+* Interactive data visualization: [R Shiny Tutorial](https://shiny.rstudio.com/tutorial/)
+* Data Visualization Ethics: [Urban Institute's Do No Harm Guide](https://www.urban.org/research/publication/do-no-harm-guide-applying-equity-awareness-data-visualization)
+* 50 Compliance
