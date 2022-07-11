@@ -37,14 +37,14 @@ library(tidyverse)
 
 ```
 
-## Exercise
+## Exercise 4
 
 ```{r}
 library(GGally)
 
-diamonds_subset <- diamonds %>%
-  select(where(is.numeric)) %>%
-  slice_sample(n = 50) 
+penguins %>%
+  select(-island, -sex, -year) %>%
+  drop_na() %>%
 
 # YOUR WORK GOES HERE
 

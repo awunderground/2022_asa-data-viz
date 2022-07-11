@@ -153,6 +153,17 @@ recent_storms %>%
 
 ```
 
+```{r fig.height = 2, echo = FALSE}
+recent_storms %>%
+  ggplot(aes(pressure, 1, color = status)) +
+  geom_point(alpha = 0.5) +
+  scale_y_continuous(breaks = 0) +
+  labs(y = NULL) +
+  theme_bw() +
+  theme(panel.border = ggplot2::element_blank())
+
+```
+
 **Size**
 
 ```{r fig.height = 2, echo = FALSE}
@@ -400,14 +411,15 @@ recent_storms %>%
 
 #### facet_grid()
 
-`facet_grid(month ~ status)`
+`facet_grid(month ~ year)`
 
 ```{r echo = FALSE}
 storms %>%
+  filter(year %in% c(1986, 2005, 2020)) %>%
   filter(month %in% c(6, 7, 8)) %>%
-  ggplot(aes(pressure, wind)) +
+  ggplot(aes(pressure, wind, color = status)) +
   geom_point(alpha = 0.2) +
-  facet_grid(month ~ status)
+  facet_grid(month ~ year)
 
 ```
 
@@ -459,9 +471,11 @@ set_urbn_defaults(style = "print")
 
 -----
 
+### Themes
+
 <font color="#ec008b">**8 Theme**</font> controls the visual style of plot with font types, font sizes, background colors, margins, and positioning.
 
-### Default theme
+#### Default theme
 
 ```{r echo = FALSE}
 recent_storms50 %>%
@@ -469,6 +483,18 @@ recent_storms50 %>%
   geom_point() +
   scale_y_continuous(limits = c(0, 160)) +
   labs(title = "Low pressure storms have higher wind speeds")
+
+```
+
+#### Theme Minimal
+
+```{r echo = FALSE}
+recent_storms50 %>%
+  ggplot(aes(pressure, wind)) +
+  geom_point() +
+  scale_y_continuous(limits = c(0, 160)) +
+  labs(title = "Low pressure storms have higher wind speeds") +
+  theme_minimal()
 
 ```
 
@@ -502,6 +528,8 @@ recent_storms50 %>%
 	scatter_grid()
 
 ```
+
+If you prefer the minimal theme, you can add `theme_minimal()` to each visualization or add `theme_set(theme_minimal)` at the beginning of your script. 
 
 -----
 

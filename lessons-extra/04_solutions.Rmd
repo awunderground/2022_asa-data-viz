@@ -82,17 +82,15 @@ diamonds %>%
 
 ```
 
-## Exercise
+## Exercise 4
 
 ```{r}
 library(GGally)
 
-diamonds_subset <- diamonds %>%
-  select(where(is.numeric), cut) %>%
-  slice_sample(n = 50) 
-
-diamonds_subset %>%
-  ggparcoord(columns = 1:4, alphaLines = 0.3, groupColumn = 8)
+penguins %>%
+  select(-island, -sex, -year) %>%
+  drop_na() %>%
+  ggparcoord(columns = 2:5, alphaLines = 0.3, groupColumn = 1)
 
 ```
 

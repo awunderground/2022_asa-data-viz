@@ -26,7 +26,7 @@ knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 ```
 
-```{r}
+```{r echo = FALSE}
 library(tidyverse)
 theme_set(theme_minimal())
 
@@ -181,7 +181,7 @@ We'll continue with the `diamonds` data set. This time we'll experiment with som
 
 -----
 
-### Wide Data Summary
+### Long Data Summary
 
 Overplotting is a major challenge even with modestly sized data. There are at least three causes for the problem:
 
@@ -211,20 +211,13 @@ Approach 1: parallel coordinate plots (Inselberg 1985)
 
 <font color="#55b748">Step 1:</font> Install and load the `GGally` package. 
 
-<font color="#55b748">Step 2:</font> Use the following code to get a subset of observations from the diamonds data set. 
+<font color="#55b748">Step 2:</font> Install and load the `palmerpenguins` package. 
 
-```
-diamonds %>%
-  select(where(is.numeric), cut) %>%
-  slice_sample(n = 50)
-
-```
-
-<font color="#55b748">Step 3:</font> Pipe (`%>%`) the data into `ggparcoord(columns = 1:4)`.
+<font color="#55b748">Step 3:</font> Pipe (`%>%`) the data into `ggparcoord(columns = 2:5)`.
 
 <font color="#55b748">Step 4:</font> Add `alphaLines = 0.3` inside of `ggparcoord()`.
 
-<font color="#55b748">Step 5:</font> Add `groupColumn = 8` inside of `ggparcoord()`.
+<font color="#55b748">Step 5:</font> Add `groupColumn = 1` inside of `ggparcoord()`.
 
 -----
 
@@ -325,3 +318,8 @@ Wide data are an even more challenging issue than overplotting. We've seen two o
 * Dimension reduction
   * PCA
   * t-SNE and UMAP
+
+**Suggestion**
+
+* If you have fewer than 50 variables, then look at relationships between variables and build up to a larger model of relationships. 
+* If you have 50 or more variables, then start with dimension reduction and then unpack the important relationships from the dimension reduction. 

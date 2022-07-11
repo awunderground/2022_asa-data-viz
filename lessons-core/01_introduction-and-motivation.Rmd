@@ -34,6 +34,13 @@ knitr::opts_chunk$set(message = FALSE)
 
 # Introductions
 
+### Background
+
+* Senior Data Scientist at the Urban Institute
+* Adjunct Professor in the McCourt School of Public Policy at Georgetown University
+
+### Data Visualization Projects
+
 * Synthetic data validation
 * [Projects that iterate with R Markdown](https://www.urban.org/policy-centers/cross-center-initiatives/state-and-local-finance-initiative/projects/state-fiscal-briefs)
 * Manage the Urban Institute ggplot2 theme ([Examples](https://urbaninstitute.github.io/r-at-urban/graphics-guide.html)) ([Code](https://github.com/UrbanInstitute/urbnthemes))
@@ -43,6 +50,11 @@ knitr::opts_chunk$set(message = FALSE)
 -----
 
 # Outline
+
+**Goal**
+
+* Develop a firm foundation with `ggplot2`
+* Learn solid data visualization theory
 
 **Core Content**
 
@@ -137,4 +149,5 @@ Click ![](`r here::here("www", "images", "knit.png")`){width=20%} when a .Rmd do
 
 * Interactive data visualization: [R Shiny Tutorial](https://shiny.rstudio.com/tutorial/)
 * Data Visualization Ethics: [Urban Institute's Do No Harm Guide](https://www.urban.org/research/publication/do-no-harm-guide-applying-equity-awareness-data-visualization)
-* 50 Compliance
+* 508 Compliance
+* Mapping (Georgetown notes)

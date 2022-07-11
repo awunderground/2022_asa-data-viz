@@ -21,7 +21,7 @@ p {
 }
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, echo = FALSE}
 library(tidyverse)
 library(modelr)
 library(broom)
@@ -79,7 +79,7 @@ cars %>%
 
 ```
 
-This final example is efficient. It uses `log(x)` as a predictor but still shows the `x` axis in linear units. 
+This final example is concise. It uses `log(x)` as a predictor but still shows the `x` axis in linear units. 
 
 `geom_smooth()` is useful for exploratory data analysis, but it is a little limiting. Next, we will consider developing models, cleaning the data, and making data visualizations as distinct steps.
 
@@ -100,7 +100,7 @@ stopping_model
 
 ```
 
-The `lm()` function creates an object of class `"lm"`. Many R functions have convenient methods for this object that are useful for understanding and using the output of a regression model. 
+The `lm()` function creates an object of class `"lm"`. Many R functions have convenient (generic) methods for this object that are useful for understanding and using the output of a regression model. 
 
 -----
 
@@ -191,7 +191,7 @@ Let's estimate a model using a subset of the diamonds data set and then create a
 set.seed(20200622)
 
 diamonds <- diamonds %>%
-  sample_n(300) %>%
+  slice_sample(n = 300) %>%
   mutate(across(where(is.factor), .fns = as.character))
 
 ```

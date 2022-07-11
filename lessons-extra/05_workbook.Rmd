@@ -27,7 +27,7 @@ theme_set(theme_minimal())
 set.seed(20200622)
 
 diamonds <- diamonds %>%
-  sample_n(300) %>%
+  slice_sample(n = 300) %>%
   mutate(across(where(is.factor), .fns = as.character))
 
 # estimate a multiple linear regression model
