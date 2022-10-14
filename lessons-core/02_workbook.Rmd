@@ -74,10 +74,6 @@ Created a scatter plot that shows the relationship between pressure and wind.
 ## Exercise 8
 
 ```{r}
-library(urbnthemes)
-
-set_urbn_defaults(style = "print")
-
 # YOUR WORK GOES HERE
 
 ```

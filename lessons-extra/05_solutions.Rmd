@@ -78,7 +78,7 @@ models_coefs %>%
              color = model)) +
   geom_vline(xintercept = 0) +
   geom_pointrange(position = position_dodge(width = 0.5)) +
-  scale_x_continuous(limits = c(-10000, 10000),
+  scale_x_continuous(limits = c(-15000, 15000),
                      labels = scales::dollar)
 
 ```

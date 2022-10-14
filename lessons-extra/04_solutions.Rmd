@@ -31,7 +31,7 @@ mpg %>%
   geom_jitter(
     mapping = aes(x = cyl, y = hwy),
     width = 0.2, 
-    height = 0.2
+    height = 0
   )
 
 ```
@@ -118,8 +118,7 @@ votes_numeric <- votes %>%
 votes_pca <- prcomp(votes_numeric)
 
 # extract the principle components
-votes_pcs <- votes_pca %>%
-  .$x %>%
+votes_pcs <- votes_pca$x %>%
   as_tibble()
 
 # combine the pcs to the names and parties

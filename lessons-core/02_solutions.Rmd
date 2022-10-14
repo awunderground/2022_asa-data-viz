@@ -23,14 +23,12 @@ theme_set(theme_minimal())
 
 I can write notes here 
 
+We start with the storms data...
+
 ```{r}
+# this is comment
 ggplot(data = storms) + 
   geom_point(mapping = aes(x = pressure, y = wind))
-
-```
-
-```{r}
-
 
 ```
 
@@ -51,7 +49,7 @@ ggplot(data = storms) +
 
 # step 4
 ggplot(data = storms) + 
-  geom_point(mapping = aes(x = pressure, y = wind), color = "green", alpha = 0.2)
+  geom_point(mapping = aes(x = pressure, y = wind), alpha = 0.5)
 
 ```
 
@@ -60,10 +58,8 @@ ggplot(data = storms) +
 ```{r}
 ggplot(data = msleep) +
   geom_point(mapping = aes(x = bodywt, y = sleep_total)) +
-  scale_x_log10() +
-  scale_y_continuous(limits = c(0, NA)) +
-  labs(title = "Measurements of Common Animals",
-       x = "Body Weight (Pounds)")
+  scale_x_log10() +  
+  scale_y_continuous(limits = c(0, NA))
 
 ```
 
@@ -82,10 +78,16 @@ ggplot(data = data) +
 ## Exercise 5
 
 ```{r}
-storms %>%
-  ggplot() +
+ggplot(data = storms) +
   geom_point(mapping = aes(x = pressure, y = wind)) +
   facet_wrap(~ month)
+
+storms %>%
+  filter(year %in% c(1985, 2003)) %>%
+  filter(month %in% c(6, 7, 8)) %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pressure, y = wind)) +
+  facet_grid(year ~ month)
 
 ```
 
@@ -143,7 +145,29 @@ storms %>%
 ```{r}
 ggplot(data = storms, mapping = aes(x = pressure, y = wind)) + 
   geom_point() +
-  geom_smooth()
+  geom_smooth(mapping = aes(color = category))
+
+
+centroids <- storms %>%
+  group_by(category) %>%
+  summarize(
+    pressure = mean(pressure),
+    wind = mean(wind)
+  )
+
+ggplot() +
+  geom_point(
+    data = storms,
+    mapping = aes(pressure, wind, color = category),
+    alpha = 0.2
+  ) +
+  geom_point(
+    data = centroids,
+    mapping = aes(pressure, wind),
+    size = 4
+  )
+
+ggsave(filename = "favorite-plot.png", width = 6.5, height = 4)
 
 ```
 

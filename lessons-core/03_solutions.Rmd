@@ -12,6 +12,7 @@ editor_options:
 
 ```{r}
 library(tidyverse)
+theme_set(theme_minimal())
 
 ```
 
@@ -36,9 +37,9 @@ tidy_anscombe <-
 
 tidy_anscombe %>%
   ggplot(aes(x, y)) +
-  geom_smooth(method = "lm", se = FALSE) +
   geom_point() +
-  facet_wrap(~quartet)
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ quartet)
 
 ```
 
@@ -57,7 +58,14 @@ titanic <- tribble(
 
 titanic %>%
   ggplot(mapping = aes(x = Class, y = n, fill = Sex)) +
-  geom_col()
+  geom_col() +
+  labs(
+    title = "The Titanic Had Many 3rd Class Passengers",
+    subtitle = "subtitle",
+    caption = "caption",
+    y = NULL, 
+    fill = "Legend: Sex"
+  )
 
 ```
 
@@ -68,7 +76,7 @@ titanic %>%
   ggplot(mapping = aes(x = Class, y = n, fill = Sex)) +
   geom_col() +
   labs(
-    title = "Most Titanic deaths were from 3rd class",
+    title = "Most Titanic deaths were in 3rd class",
     caption = "Data from library(titanic)"
   )
 
@@ -84,6 +92,20 @@ theme_set(theme_minimal())
 titanic %>%
   ggplot(aes(x = Class, y = n, fill = Sex)) +
   geom_col(position = "dodge") +
+    labs(
+    title = "More 
+    <span style='color:#00BFC4;'>male passengers</span> died than 
+    <span style='color:#F8766D;'>female passengers</span> in all three classes",
+    x = NULL,
+    y = NULL
+  ) +
+  theme(plot.title = element_markdown()) +
+  guides(fill = "none")
+
+
+
+
++
   geom_text(
     aes(label = n),
     position = position_dodge(width = 0.9),
@@ -99,12 +121,30 @@ titanic %>%
   ) +
   theme(
     panel.grid = element_line(color = "white"),
-    plot.title = element_markdown(),
+    plot.title = element_markdown(hjust = 0.5),
     axis.text.y = element_blank()
   ) +
   guides(fill = "none")
 
 ```
+
+```{r}
+data <- tribble(
+  ~feeling, ~n,
+  "unsatisfied", 25,
+  "neutral", 10,
+  "satisfied", 90
+)
+
+data %>%
+  mutate(feeling = str_to_title(feeling)) %>%
+  mutate(feeling = factor(feeling, levels = c("Unsatisfied", "Neutral", "Satisfied"))) %>%
+  ggplot(aes(feeling, n)) +
+  geom_col()
+
+
+```
+
 
 ## Exercise 5
 
@@ -117,6 +157,11 @@ data <- gapminder %>%
   group_by(country) %>%
   mutate(pcgdp_change = ifelse(year == 1952, 0, gdpPercap - lag(gdpPercap))) %>%
   mutate(pcgdp_change = cumsum(pcgdp_change))
+
+data %>%
+  ggplot(mapping = aes(x = year, y = pcgdp_change, group = country)) +
+  geom_line() 
+
 
 data %>%
   ggplot(mapping = aes(x = year, y = pcgdp_change, color = country)) +

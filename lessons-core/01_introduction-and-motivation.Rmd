@@ -51,10 +51,28 @@ knitr::opts_chunk$set(message = FALSE)
 
 # Outline
 
-**Goal**
+**Process**
 
+* Please consider turning on your cameras. 
+* Please ask questions at any time. You can speak up, raise your hand, or drop it in the chat. 
+* I need to know how you are doing. Please ask lots of questions and give your reactions.
+* I will check in during breaks about pacing and content.
+* We will skip some exercises. Don't worry, I've shared solutions to all exercises!
+
+**Goals**
+
+* Enthusiasm
 * Develop a firm foundation with `ggplot2`
 * Learn solid data visualization theory
+* Leave with enough understanding and resources that you can apply the covered material to your own work
+    * You will still need to look stuff up!
+    * I will try to give you hints for where to find help
+
+**What about you?**
+
+* Disciplines?
+* Programming experience?
+* What do you want to get from today?
 
 **Core Content**
 
@@ -68,6 +86,7 @@ knitr::opts_chunk$set(message = FALSE)
 * Visualizing regression models
 * Data munging for visualization
 * Visualizing time series data
+* Advance R Markdown
 
 -----
 
